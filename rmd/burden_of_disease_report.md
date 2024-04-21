@@ -5,9 +5,9 @@ Manjari Shankar
 # Introduction
 
 This document compares the Disability-Adjusted Life Year (DALY) diseases
-burden for three countries: COUNTRY 1, COUNTRY 2, and COUNTRY 3. We
-compare the burden due to communicable, maternal, neonatal, and
-nutritional diseases (CMNN), non-communicable diseases (NCDs), and
+burden for three countries: Democratic Republic of Congo, India, and
+Nigeria. We compare the burden due to communicable, maternal, neonatal,
+and nutritional diseases (CMNN), non-communicable diseases (NCDs), and
 overall disease burden for these countries.
 
 The source data is from the Institute for Health Metrics and Evaluation
@@ -116,21 +116,48 @@ country segment.
 
 # Overall Disease Burden
 
-    ## Rows: 8100 Columns: 4
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (2): Entity, Code
-    ## dbl (2): Year, DALYs (Disability-Adjusted Life Years) - All causes - Sex: Bo...
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
 ## Table of Estimates for Overall Disease Burden Over Time
+
+| Year | Democratic Republic of Congo |  India   | Nigeria  |
+|:----:|:----------------------------:|:--------:|:--------:|
+| 1990 |           83323.46           | 66331.86 | 83225.66 |
+| 1991 |           83534.47           | 65830.74 | 83782.38 |
+| 1992 |           83579.16           | 65195.09 | 83103.23 |
+| 1993 |           84212.14           | 63540.49 | 82991.49 |
+| 1994 |           84807.08           | 61770.56 | 82969.94 |
+| 1995 |           84848.66           | 60328.05 | 83026.21 |
+| 1996 |           90220.16           | 59392.84 | 83770.22 |
+| 1997 |           86664.90           | 59647.16 | 82829.75 |
+| 1998 |           85784.02           | 58990.25 | 82842.87 |
+| 1999 |           84961.69           | 57725.99 | 82873.98 |
+| 2000 |           83639.74           | 56700.43 | 82601.23 |
+| 2001 |           82609.63           | 55810.22 | 81850.25 |
+| 2002 |           82098.45           | 54426.49 | 80780.64 |
+| 2003 |           80679.08           | 52742.33 | 79278.81 |
+| 2004 |           78468.77           | 51078.22 | 77540.38 |
+| 2005 |           76324.96           | 50537.78 | 75379.06 |
+| 2006 |           74640.68           | 49940.44 | 73330.45 |
+| 2007 |           73064.95           | 49223.80 | 71176.37 |
+| 2008 |           71799.47           | 48542.66 | 69242.37 |
+| 2009 |           70163.14           | 46831.44 | 67483.05 |
+| 2010 |           67626.27           | 45779.16 | 65739.92 |
+| 2011 |           65691.85           | 45108.60 | 64174.38 |
+| 2012 |           63729.20           | 44068.44 | 62740.79 |
+| 2013 |           61311.53           | 43223.26 | 61468.45 |
+| 2014 |           58836.46           | 41814.78 | 60410.35 |
+| 2015 |           56520.17           | 40978.04 | 59034.54 |
+| 2016 |           54665.84           | 39614.92 | 57477.91 |
+| 2017 |           53162.10           | 38790.55 | 56018.08 |
+| 2018 |           51196.74           | 38497.58 | 54681.25 |
+| 2019 |           50113.59           | 37843.33 | 53229.60 |
 
 ## Plot Showing Trends in Overall Disease Burden Over Time
 
+![](burden_of_disease_report_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
+
 ## Summary of Overall Disease Burden Findings
 
-Provide a brief analysis based on the data presented in the table and
-chart. Highlight any significant findings or patterns. About 3
-sentences.
+The all-cause associated DALYs burden between 1990-2019 is significantly
+lower in India vis-a-vis DRC and Nigeria. As seen in subsets of disease
+areas, 2000 onwards, the trajectory is downwards with considerable
+reductions ever since.
