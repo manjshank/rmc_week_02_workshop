@@ -1,6 +1,6 @@
 # Non-Communicable Disease Burden (NCD)
 
-```{r}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 # Load necessary packages
 pacman::p_load(tidyverse, knitr, here)
 
@@ -10,20 +10,42 @@ data_ncd <- read_csv(here("data", "burden-of-disease-ncd.csv"))
 
 ## Table of Estimates for NCD Burden Over Time
 
-```{r}
+```{r echo=FALSE}
 # Here render a table for the DALY burden over time for the three countries 
 # You should pivot the data to show each country in a separate column.
 # Use kable() from the knitr package to render the table.
+
+daly_burden_ncd <- data_ncd %>% 
+  select(Entity, Year, `DALYs (Disability-Adjusted Life Years) - Non-communicable diseases - Sex: Both - Age: Age-standardized (Rate)`) %>%  
+  rename(Country = Entity, DALYs = `DALYs (Disability-Adjusted Life Years) - Non-communicable diseases - Sex: Both - Age: Age-standardized (Rate)`) %>% 
+  filter(Country %in% c("Nigeria", "Democratic Republic of Congo", "India")) %>% 
+  arrange(Year) %>% 
+  pivot_wider(names_from = Country, values_from = DALYs )
+
+# Render the pivot table using the kable function
+kable(daly_burden_ncd, format = "markdown", align = "c")
 ```
 
 ## Plot Showing Trends in NCD Burden Over Time 
 
-```{r}
+```{r echo=FALSE}
 # Here, plot a line graph showing the trend of DALY burden for the chosen countries over time. You can use ggplot2 to create this plot. Each country's line should be a different color.
+
+daly_burden_ncd2 <- pivot_longer(daly_burden_ncd, cols = c("Nigeria","Democratic Republic of Congo","India"), names_to = "Country", values_to = "DALYs")
+
+plot_ncd <- ggplot(daly_burden_ncd2, aes(x = Year, y = DALYs, color = Country)) +
+  geom_line() +
+  labs(title = "Trends in NCD-associated DALYs burden: 1990-2019",
+       x = "Year",
+       y = "DALYs burden",
+       color = "Country") +
+  scale_x_continuous(breaks = seq(1990, 2020, by = 5))  +
+  scale_y_continuous(breaks = seq(0, 30000, by = 1000), labels = scales::comma)
+
+plot_ncd
 ```
 
 ## Summary of NCD Burden Findings
 
-Provide a brief analysis based on the data presented in the table and chart. Highlight any significant findings or patterns. About 3 sentences.
-
+All the 3 select countries are exhibiting a downward trend in DALYs due to NCDs. While the peak was around the 2000s, India has seen a brief upward trend between 2004 and 2008. NCDs have been a significant public health problem in low and lower-middle income countries and this graph can be attributed to the ongoing effports to control this across this country segment.
 
