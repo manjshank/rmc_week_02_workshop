@@ -1,6 +1,6 @@
 # Overall Disease Burden
 
-```{r}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 # Load necessary packages
 pacman::p_load(tidyverse, knitr, here)
 
@@ -10,19 +10,42 @@ data_overall <- read_csv(here("data", "burden-of-disease-all-causes.csv"))
 
 ## Table of Estimates for Overall Disease Burden Over Time
 
-```{r}
+```{r echo=FALSE}
 # Here render a table for the DALY burden over time for the three countries 
 # You should pivot the data to show each country in a separate column.
 # Use kable() from the knitr package to render the table.
+
+daly_burden_overall <- data_overall %>% 
+  select(Entity, Year, `DALYs (Disability-Adjusted Life Years) - All causes - Sex: Both - Age: Age-standardized (Rate)`) %>%  
+  rename(Country = Entity, DALYs = `DALYs (Disability-Adjusted Life Years) - All causes - Sex: Both - Age: Age-standardized (Rate)`) %>% 
+  filter(Country %in% c("Nigeria", "Democratic Republic of Congo", "India")) %>% 
+  arrange(Year) %>% 
+  pivot_wider(names_from = Country, values_from = DALYs )
+
+# Render the pivot table using the kable function
+kable(daly_burden_overall, format = "markdown", align = "c")
 ```
 
 ## Plot Showing Trends in Overall Disease Burden Over Time
 
-```{r}
+```{r echo=FALSE}
 # Here, plot a line graph showing the trend of DALY burden for the chosen countries over time. You can use ggplot2 to create this plot. Each country's line should be a different color.
+
+daly_burden_overall2 <- pivot_longer(daly_burden_overall, cols = c("Nigeria","Democratic Republic of Congo","India"), names_to = "Country", values_to = "DALYs")
+
+plot_overall <- ggplot(daly_burden_overall2, aes(x = Year, y = DALYs, color = Country)) +
+  geom_line() +
+  labs(title = "Trends in all-cause associated DALYs burden: 1990-2019",
+       x = "Year",
+       y = "DALYs burden",
+       color = "Country") +
+  scale_x_continuous(breaks = seq(1990, 2020, by = 5))  +
+  scale_y_continuous(breaks = seq(0, 90000, by = 10000), labels = scales::comma)
+
+plot_overall
 ```
 
 ## Summary of Overall Disease Burden Findings
 
-Provide a brief analysis based on the data presented in the table and chart. Highlight any significant findings or patterns. About 3 sentences.
+The all-cause associated DALYs burden between 1990-2019 is significantly lower in India vis-a-vis DRC and Nigeria. As seen in subsets of disease areas, 2000 onwards, the trajectory is downwards with considerable reductions ever since. 
 
